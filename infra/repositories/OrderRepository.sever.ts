@@ -1,8 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import { Order, OrderDTO } from "../../app/interfaces/entities/order";
 import { Repository } from "../../app/interfaces/repositories/Repository";
+import { IOrderRepository } from "../../app/interfaces/repositories/OrderRepository";
 
-export class OrderRepository implements Repository<Order, OrderDTO> {
+export class OrderRepository
+  implements Repository<Order, OrderDTO>, IOrderRepository
+{
   constructor(private prismaClient: PrismaClient) {}
 
   public async listAll(): Promise<Order[]> {
@@ -38,5 +41,11 @@ export class OrderRepository implements Repository<Order, OrderDTO> {
 
   public async delete(id: number): Promise<void> {
     await this.prismaClient.order.delete({ where: { id } });
+  }
+
+  public async getUnfinishedOrder(userId: number): Promise<Order | undefined> {
+    const order = await this.prismaClient.order.findMany({ where: { userId } });
+
+    return order.at(0);
   }
 }
