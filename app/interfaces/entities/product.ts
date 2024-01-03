@@ -5,3 +5,10 @@ export interface Product {
   count: number;
   description: string | null;
 }
+
+export interface ProductDTO {
+  name: string;
+  price: number;
+  count: number;
+  description: string | null;
+}
