@@ -18,7 +18,7 @@ export function CardList({ children, pages }: Props) {
       <div className="min-h-screen w-full">
         <div className="flex gap-4 flex-col-reverse ">
           <ul className="grid grid-flow-row gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {children}pageNumber
+            {children}
           </ul>
           <div className="flex justify-end">
             {pages !== 0 && (
@@ -54,7 +54,7 @@ export function CardList({ children, pages }: Props) {
             )}
           </div>
         </div>
-        {pages > Number(page) && (
+        {pages >= Number(page) && (
           <div className="flex justify-center gap-4 mt-4 mb-4">
             {Number(page) !== 1 && (
               <Link
