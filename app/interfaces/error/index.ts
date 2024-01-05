@@ -1,7 +1,10 @@
 export type ErrorType =
   | "userNotFound"
   | "productNotFound"
-  | "orderDetailNotFound";
+  | "orderDetailNotFound"
+  | "orderNotFound"
+  | "emptyCart"
+  | "expiredProduct";
 
 export type ErrorObject = {
   status: number;
@@ -20,5 +23,17 @@ export const Errors: Record<ErrorType, ErrorObject> = {
   orderDetailNotFound: {
     status: 404,
     message: "Item não encontrado.",
+  },
+  orderNotFound: {
+    status: 404,
+    message: "Pedido não encontrado.",
+  },
+  emptyCart: {
+    status: 400,
+    message: "Carrinho vazio.",
+  },
+  expiredProduct: {
+    status: 400,
+    message: "Produto esgotado.",
   },
 };
