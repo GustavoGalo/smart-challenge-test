@@ -11,7 +11,12 @@ export class OrderDetailRepository
   constructor(private prismaClient: PrismaClient) {}
 
   public async listAll(): Promise<OrderDetail[]> {
-    const orders = await this.prismaClient.orderDetails.findMany();
+    const orders = await this.prismaClient.orderDetails.findMany({
+      include: {
+        product: true,
+        order: true,
+      },
+    });
 
     return orders;
   }
