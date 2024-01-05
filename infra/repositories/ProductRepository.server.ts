@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PrismaClient } from "@prisma/client";
 import { Product, ProductDTO } from "../../app/interfaces/entities/product";
 import { Repository } from "../../app/interfaces/repositories/Repository";
@@ -11,6 +12,17 @@ export class ProductRepository implements Repository<Product, ProductDTO> {
     return products;
   }
 
+  public async listAllWithFilters(filters: any): Promise<Product[]> {
+    const products = await this.prismaClient.product.findMany({ ...filters });
+
+    return products;
+  }
+
+  public async countRecords(filters: any): Promise<number> {
+    const products = await this.prismaClient.product.count({ ...filters });
+
+    return products;
+  }
   public async getById(id: number): Promise<Product | null> {
     const product = await this.prismaClient.product.findUnique({
       where: { id },
