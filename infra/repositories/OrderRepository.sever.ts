@@ -44,7 +44,9 @@ export class OrderRepository
   }
 
   public async getUnfinishedOrder(userId: number): Promise<Order | undefined> {
-    const order = await this.prismaClient.order.findMany({ where: { userId } });
+    const order = await this.prismaClient.order.findMany({
+      where: { userId, finished: false },
+    });
 
     return order.at(0);
   }
