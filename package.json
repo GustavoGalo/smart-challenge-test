@@ -10,7 +10,7 @@
     "start": "remix-serve ./build/index.js",
     "typecheck": "tsc",
     "seed": "tsx prisma/seed.ts",
-    "postinstall": "prisma generate && prisma init --datasource-provider postgresql && prisma migrate deploy"
+    "postinstall": "prisma generate && prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "^5.7.1",
