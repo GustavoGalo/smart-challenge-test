@@ -2,7 +2,6 @@ import { Filter } from "../interfaces/entities/filter";
 import { ProductRepository, PrismaClientSingleton } from "../../infra/";
 
 export async function listProducts(filters?: Filter) {
-  console.log(filters);
   const prismaClient = PrismaClientSingleton.getInstance().getPrismaClient();
   const productsRepository = new ProductRepository(prismaClient);
 
