@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@splinter/prisma/client/index.js";
 
 export class PrismaClientSingleton {
   private static instance: PrismaClientSingleton;
